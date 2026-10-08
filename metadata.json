@@ -1,0 +1,6 @@
+{
+  "name": "StoryLearn - AI Story-Based Learning",
+  "description": "Interactive AI story engine teaching NCERT Classes 7-9 science and maths and any curiosity topic through relatable stories, visual widgets, adaptive quizzes, and AI misconception diagnosis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,1994 @@
+{
+  "source": "NCERT Maths and Science Syllabus Classes 7 to 9 (provided PDF overview)",
+  "classes": [
+    {
+      "class": 7,
+      "subjects": [
+        {
+          "subject": "Mathematics",
+          "id": "c7-math",
+          "chapters": [
+            {
+              "id": "c7-math-ch01",
+              "chapterNumber": 1,
+              "title": "Integers",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch01-s1",
+                  "title": "Properties of addition and subtraction of integers",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch01-s2",
+                  "title": "Multiplication and division of integers, their properties",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch01-s3",
+                  "title": "Word problems on integers",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch02",
+              "chapterNumber": 2,
+              "title": "Fractions and Decimals",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch02-s1",
+                  "title": "Multiplication and division of fractions",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch02-s2",
+                  "title": "Multiplication and division of decimal numbers",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch02-s3",
+                  "title": "Reciprocals, powers of 10",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch03",
+              "chapterNumber": 3,
+              "title": "Data Handling",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch03-s1",
+                  "title": "Mean, median and mode",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch03-s2",
+                  "title": "Bar graphs and double bar graphs",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch03-s3",
+                  "title": "Chance and probability (basic)",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch04",
+              "chapterNumber": 4,
+              "title": "Simple Equations",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch04-s1",
+                  "title": "Setting up equations from statements",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch04-s2",
+                  "title": "Solving equations by transposing",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch04-s3",
+                  "title": "Applications to practical situations",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch05",
+              "chapterNumber": 5,
+              "title": "Lines and Angles",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch05-s1",
+                  "title": "Complementary and supplementary angles",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch05-s2",
+                  "title": "Adjacent angles, linear pair, vertically opposite angles",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch05-s3",
+                  "title": "Pairs of lines: intersecting and parallel lines with a transversal, checking for parallel lines",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch06",
+              "chapterNumber": 6,
+              "title": "The Triangle and its Properties",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch06-s1",
+                  "title": "Medians and altitudes",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch06-s2",
+                  "title": "Exterior angle property and angle sum property",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch06-s3",
+                  "title": "Two sides of a triangle (triangle inequality)",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch06-s4",
+                  "title": "Right-angled triangles and the Pythagoras property",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch07",
+              "chapterNumber": 7,
+              "title": "Congruence of Triangles",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch07-s1",
+                  "title": "Congruence of plane figures and of line segments",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch07-s2",
+                  "title": "Criteria: SSS, SAS, ASA, RHS",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch08",
+              "chapterNumber": 8,
+              "title": "Comparing Quantities",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch08-s1",
+                  "title": "Ratios and equivalent ratios",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch08-s2",
+                  "title": "Percentage, converting between fractions, decimals and percentages",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch08-s3",
+                  "title": "Profit and loss, simple interest",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch09",
+              "chapterNumber": 9,
+              "title": "Rational Numbers",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch09-s1",
+                  "title": "Positive and negative rational numbers",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch09-s2",
+                  "title": "Rational numbers on the number line, standard form",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch09-s3",
+                  "title": "Comparing rational numbers, operations on them",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch10",
+              "chapterNumber": 10,
+              "title": "Practical Geometry",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch10-s1",
+                  "title": "Constructing a line parallel to a given line",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch10-s2",
+                  "title": "Constructing triangles (SSS, SAS, ASA, RHS)",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch11",
+              "chapterNumber": 11,
+              "title": "Perimeter and Area",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch11-s1",
+                  "title": "Squares and rectangles, triangles, parallelograms",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch11-s2",
+                  "title": "Circles: circumference and area",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch11-s3",
+                  "title": "Conversion of units",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch12",
+              "chapterNumber": 12,
+              "title": "Algebraic Expressions",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch12-s1",
+                  "title": "Terms, factors and coefficients; like and unlike terms",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch12-s2",
+                  "title": "Monomials, binomials, polynomials",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch12-s3",
+                  "title": "Addition and subtraction, finding the value of an expression",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch13",
+              "chapterNumber": 13,
+              "title": "Exponents and Powers",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch13-s1",
+                  "title": "Exponential form, laws of exponents",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch13-s2",
+                  "title": "Powers with the same base, power of a power",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch13-s3",
+                  "title": "Expressing large numbers in standard form",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch14",
+              "chapterNumber": 14,
+              "title": "Symmetry",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch14-s1",
+                  "title": "Lines of symmetry for regular polygons",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch14-s2",
+                  "title": "Rotational symmetry, line and rotational symmetry together",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c7-math-ch15",
+              "chapterNumber": 15,
+              "title": "Visualising Solid Shapes",
+              "subtopics": [
+                {
+                  "id": "c7-math-ch15-s1",
+                  "title": "Plane figures and solid shapes, faces, edges and vertices",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch15-s2",
+                  "title": "Nets for building 3D shapes",
+                  "videoId": null
+                },
+                {
+                  "id": "c7-math-ch15-s3",
+                  "title": "Drawing solids on a flat surface, viewing different sections",
+                  "videoId": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "subject": "Science",
+          "id": "c7-sci",
+          "branches": [
+            {
+              "branch": "Biology",
+              "id": "c7-biology",
+              "chapters": [
+                {
+                  "id": "c7-biology-ch01",
+                  "chapterNumber": 1,
+                  "title": "Nutrition in Plants",
+                  "subtopics": [
+                    {
+                      "id": "c7-biology-ch01-s1",
+                      "title": "Autotrophic and heterotrophic nutrition",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-biology-ch01-s2",
+                      "title": "Photosynthesis: raw materials, chlorophyll, products",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-biology-ch01-s3",
+                      "title": "Other modes: parasites, insectivorous plants, saprotrophs, symbiosis",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-biology-ch01-s4",
+                      "title": "Nutrient replenishment in soil",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-biology-ch02",
+                  "chapterNumber": 2,
+                  "title": "Nutrition in Animals",
+                  "subtopics": [
+                    {
+                      "id": "c7-biology-ch02-s1",
+                      "title": "Steps: ingestion, digestion, absorption, assimilation, egestion",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-biology-ch02-s2",
+                      "title": "Human digestive system and the role of enzymes",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-biology-ch02-s3",
+                      "title": "Digestion in grass-eating animals (ruminants) and in amoeba",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-biology-ch03",
+                  "chapterNumber": 3,
+                  "title": "Respiration in Organisms",
+                  "subtopics": [
+                    {
+                      "id": "c7-biology-ch03-s1",
+                      "title": "Why we respire, cellular respiration",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-biology-ch03-s2",
+                      "title": "Aerobic and anaerobic respiration",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-biology-ch03-s3",
+                      "title": "Breathing in humans, animals and plants",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-biology-ch04",
+                  "chapterNumber": 4,
+                  "title": "Transportation in Animals and Plants",
+                  "subtopics": [
+                    {
+                      "id": "c7-biology-ch04-s1",
+                      "title": "Circulatory system: blood, blood vessels, heart",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-biology-ch04-s2",
+                      "title": "Excretion in humans, the kidney",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-biology-ch04-s3",
+                      "title": "Transport of water and minerals in plants, transpiration",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-biology-ch05",
+                  "chapterNumber": 5,
+                  "title": "Reproduction in Plants",
+                  "subtopics": [
+                    {
+                      "id": "c7-biology-ch05-s1",
+                      "title": "Asexual reproduction: budding, fragmentation, spore formation, vegetative propagation",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-biology-ch05-s2",
+                      "title": "Sexual reproduction: parts of a flower, pollination, fertilisation, fruits and seed dispersal",
+                      "videoId": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "branch": "Chemistry",
+              "id": "c7-chemistry",
+              "chapters": [
+                {
+                  "id": "c7-chemistry-ch01",
+                  "chapterNumber": 1,
+                  "title": "Acids, Bases and Salts",
+                  "subtopics": [
+                    {
+                      "id": "c7-chemistry-ch01-s1",
+                      "title": "Natural indicators: litmus, turmeric, China rose",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-chemistry-ch01-s2",
+                      "title": "Neutralisation and its everyday uses",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-chemistry-ch01-s3",
+                      "title": "Indicators in the laboratory",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-chemistry-ch02",
+                  "chapterNumber": 2,
+                  "title": "Physical and Chemical Changes",
+                  "subtopics": [
+                    {
+                      "id": "c7-chemistry-ch02-s1",
+                      "title": "Reversible and irreversible changes",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-chemistry-ch02-s2",
+                      "title": "Rusting, crystallisation, galvanisation",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-chemistry-ch02-s3",
+                      "title": "Examples: burning, cooking, formation of salt",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-chemistry-ch03",
+                  "chapterNumber": 3,
+                  "title": "Fibre to Fabric",
+                  "subtopics": [
+                    {
+                      "id": "c7-chemistry-ch03-s1",
+                      "title": "Animal fibres: wool and silk",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-chemistry-ch03-s2",
+                      "title": "Processing of wool, life history of the silk moth",
+                      "videoId": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "branch": "Physics",
+              "id": "c7-physics",
+              "chapters": [
+                {
+                  "id": "c7-physics-ch01",
+                  "chapterNumber": 1,
+                  "title": "Heat",
+                  "subtopics": [
+                    {
+                      "id": "c7-physics-ch01-s1",
+                      "title": "Temperature, clinical and laboratory thermometers",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-physics-ch01-s2",
+                      "title": "Conduction, convection and radiation",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-physics-ch01-s3",
+                      "title": "Conductors and insulators, sea and land breezes, clothes for summer and winter",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-physics-ch02",
+                  "chapterNumber": 2,
+                  "title": "Motion and Time",
+                  "subtopics": [
+                    {
+                      "id": "c7-physics-ch02-s1",
+                      "title": "Slow and fast motion, speed",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-physics-ch02-s2",
+                      "title": "Measuring time, units of time and speed",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-physics-ch02-s3",
+                      "title": "Distance-time graphs",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-physics-ch03",
+                  "chapterNumber": 3,
+                  "title": "Electric Current and its Effects",
+                  "subtopics": [
+                    {
+                      "id": "c7-physics-ch03-s1",
+                      "title": "Symbols for circuit components, circuit diagrams",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-physics-ch03-s2",
+                      "title": "Heating effect, fuse, magnetic effect, electromagnets, electric bell",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-physics-ch04",
+                  "chapterNumber": 4,
+                  "title": "Light",
+                  "subtopics": [
+                    {
+                      "id": "c7-physics-ch04-s1",
+                      "title": "Reflection, laws of reflection",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-physics-ch04-s2",
+                      "title": "Plane and spherical mirrors (concave and convex), lenses",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-physics-ch04-s3",
+                      "title": "Dispersion: sunlight is made of seven colours",
+                      "videoId": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "branch": "Environment and Earth Science",
+              "id": "c7-environment",
+              "chapters": [
+                {
+                  "id": "c7-environment-ch01",
+                  "chapterNumber": 1,
+                  "title": "Weather, Climate and Adaptations of Animals to Climate",
+                  "subtopics": [
+                    {
+                      "id": "c7-environment-ch01-s1",
+                      "title": "Weather vs climate, polar regions and tropical rainforests",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-environment-ch01-s2",
+                      "title": "Adaptations of animals",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-environment-ch02",
+                  "chapterNumber": 2,
+                  "title": "Winds, Storms and Cyclones",
+                  "subtopics": [
+                    {
+                      "id": "c7-environment-ch02-s1",
+                      "title": "Air exerts pressure, high-speed winds and low pressure",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-environment-ch02-s2",
+                      "title": "Thunderstorms, tornadoes and cyclones, safety measures",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-environment-ch03",
+                  "chapterNumber": 3,
+                  "title": "Soil",
+                  "subtopics": [
+                    {
+                      "id": "c7-environment-ch03-s1",
+                      "title": "Soil profile and types, properties",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-environment-ch03-s2",
+                      "title": "Soil and crops, absorption of water",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-environment-ch04",
+                  "chapterNumber": 4,
+                  "title": "Water: A Precious Resource",
+                  "subtopics": [
+                    {
+                      "id": "c7-environment-ch04-s1",
+                      "title": "Distribution of water, groundwater and water table",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-environment-ch04-s2",
+                      "title": "Depletion and conservation",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-environment-ch05",
+                  "chapterNumber": 5,
+                  "title": "Forests: Our Lifeline",
+                  "subtopics": [
+                    {
+                      "id": "c7-environment-ch05-s1",
+                      "title": "Forest ecosystem, food chains and food webs",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-environment-ch05-s2",
+                      "title": "Role of decomposers, forests and water cycle",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c7-environment-ch06",
+                  "chapterNumber": 6,
+                  "title": "Wastewater Story",
+                  "subtopics": [
+                    {
+                      "id": "c7-environment-ch06-s1",
+                      "title": "Water treatment and sewage",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c7-environment-ch06-s2",
+                      "title": "Sanitation and better practices",
+                      "videoId": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "class": 8,
+      "subjects": [
+        {
+          "subject": "Mathematics",
+          "id": "c8-math",
+          "chapters": [
+            {
+              "id": "c8-math-ch01",
+              "chapterNumber": 1,
+              "title": "Rational Numbers",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch01-s1",
+                  "title": "Properties: closure, commutativity, associativity, distributivity",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch01-s2",
+                  "title": "Additive and multiplicative identity and inverse",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch01-s3",
+                  "title": "Representing rational numbers on the number line, rational numbers between two rational numbers",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch02",
+              "chapterNumber": 2,
+              "title": "Linear Equations in One Variable",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch02-s1",
+                  "title": "Solving equations with the variable on one side or both sides",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch02-s2",
+                  "title": "Reducing equations to simpler form",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch02-s3",
+                  "title": "Word problems and applications",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch03",
+              "chapterNumber": 3,
+              "title": "Understanding Quadrilaterals",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch03-s1",
+                  "title": "Polygons: convex, concave, regular, irregular",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch03-s2",
+                  "title": "Angle sum property of a polygon, exterior angles",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch03-s3",
+                  "title": "Kinds of quadrilaterals and properties of parallelograms, rectangles, rhombus, square",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch04",
+              "chapterNumber": 4,
+              "title": "Practical Geometry",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch04-s1",
+                  "title": "Constructing a quadrilateral given four sides and a diagonal, two diagonals and three sides",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch04-s2",
+                  "title": "Constructions with special angles and sides",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch05",
+              "chapterNumber": 5,
+              "title": "Data Handling",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch05-s1",
+                  "title": "Organising data, grouping into class intervals",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch05-s2",
+                  "title": "Histograms and pie charts",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch05-s3",
+                  "title": "Probability: random experiments, equally likely outcomes",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch06",
+              "chapterNumber": 6,
+              "title": "Squares and Square Roots",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch06-s1",
+                  "title": "Properties of square numbers, patterns",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch06-s2",
+                  "title": "Finding square roots by prime factorisation and long division",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch06-s3",
+                  "title": "Pythagorean triplets",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch07",
+              "chapterNumber": 7,
+              "title": "Cubes and Cube Roots",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch07-s1",
+                  "title": "Cubes, perfect cubes, interesting patterns",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch07-s2",
+                  "title": "Cube roots by prime factorisation",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch08",
+              "chapterNumber": 8,
+              "title": "Comparing Quantities",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch08-s1",
+                  "title": "Discount, profit and loss, sales tax and GST",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch08-s2",
+                  "title": "Compound interest, rate compounded annually and half-yearly",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch08-s3",
+                  "title": "Increase and decrease (depreciation)",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch09",
+              "chapterNumber": 9,
+              "title": "Algebraic Expressions and Identities",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch09-s1",
+                  "title": "Multiplication of monomials, binomials and polynomials",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch09-s2",
+                  "title": "Standard identities: (a + b)², (a − b)², (a + b)(a − b), (x + a)(x + b)",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch10",
+              "chapterNumber": 10,
+              "title": "Visualising Solid Shapes",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch10-s1",
+                  "title": "Views of 3D shapes, mapping space around us",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch10-s2",
+                  "title": "Faces, edges and vertices, Euler's formula",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch11",
+              "chapterNumber": 11,
+              "title": "Mensuration",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch11-s1",
+                  "title": "Area of trapezium and general quadrilaterals",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch11-s2",
+                  "title": "Surface area of cube, cuboid and cylinder",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch11-s3",
+                  "title": "Volume of cube, cuboid and cylinder",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch12",
+              "chapterNumber": 12,
+              "title": "Exponents and Powers",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch12-s1",
+                  "title": "Negative integer exponents",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch12-s2",
+                  "title": "Laws of exponents, standard form for very small numbers",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch13",
+              "chapterNumber": 13,
+              "title": "Direct and Inverse Proportions",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch13-s1",
+                  "title": "Direct proportion, inverse proportion",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch13-s2",
+                  "title": "Problems on time, work and speed",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch14",
+              "chapterNumber": 14,
+              "title": "Factorisation",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch14-s1",
+                  "title": "Common factors, regrouping terms",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch14-s2",
+                  "title": "Using identities, factors of the form (x + a)(x + b)",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch14-s3",
+                  "title": "Division of algebraic expressions",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch15",
+              "chapterNumber": 15,
+              "title": "Introduction to Graphs",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch15-s1",
+                  "title": "Bar graphs, pie charts, line graphs",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch15-s2",
+                  "title": "Linear graphs, plotting points, reading graphs",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c8-math-ch16",
+              "chapterNumber": 16,
+              "title": "Playing with Numbers",
+              "subtopics": [
+                {
+                  "id": "c8-math-ch16-s1",
+                  "title": "Numbers in general form, games with numbers",
+                  "videoId": null
+                },
+                {
+                  "id": "c8-math-ch16-s2",
+                  "title": "Tests of divisibility by 2, 3, 4, 5, 6, 8, 9, 10, 11",
+                  "videoId": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "subject": "Science",
+          "id": "c8-sci",
+          "branches": [
+            {
+              "branch": "Biology",
+              "id": "c8-biology",
+              "chapters": [
+                {
+                  "id": "c8-biology-ch01",
+                  "chapterNumber": 1,
+                  "title": "Crop Production and Management",
+                  "subtopics": [
+                    {
+                      "id": "c8-biology-ch01-s1",
+                      "title": "Agricultural practices: preparation of soil, sowing, adding manure and fertilisers, irrigation, weeding, harvesting, storage",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-biology-ch01-s2",
+                      "title": "Kharif and rabi crops, animal husbandry",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-biology-ch02",
+                  "chapterNumber": 2,
+                  "title": "Microorganisms: Friend and Foe",
+                  "subtopics": [
+                    {
+                      "id": "c8-biology-ch02-s1",
+                      "title": "Bacteria, fungi, protozoa, algae and viruses",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-biology-ch02-s2",
+                      "title": "Useful uses: curd, bread, alcohol, antibiotics, vaccines, nitrogen fixation",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-biology-ch02-s3",
+                      "title": "Harmful effects: diseases in humans, animals and plants, food poisoning, food preservation",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-biology-ch03",
+                  "chapterNumber": 3,
+                  "title": "Conservation of Plants and Animals",
+                  "subtopics": [
+                    {
+                      "id": "c8-biology-ch03-s1",
+                      "title": "Deforestation and its causes, biodiversity",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-biology-ch03-s2",
+                      "title": "Wildlife sanctuaries, national parks, biosphere reserves",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-biology-ch03-s3",
+                      "title": "Endangered species, Red Data Book, migration, recycling of paper",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-biology-ch04",
+                  "chapterNumber": 4,
+                  "title": "Cell: Structure and Functions",
+                  "subtopics": [
+                    {
+                      "id": "c8-biology-ch04-s1",
+                      "title": "Discovery of the cell, unicellular and multicellular organisms",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-biology-ch04-s2",
+                      "title": "Cell organelles: cell membrane, cell wall, nucleus, cytoplasm, vacuole",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-biology-ch04-s3",
+                      "title": "Parts of the cell, differences between plant and animal cells",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-biology-ch05",
+                  "chapterNumber": 5,
+                  "title": "Reproduction in Animals",
+                  "subtopics": [
+                    {
+                      "id": "c8-biology-ch05-s1",
+                      "title": "Sexual reproduction, male and female reproductive organs",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-biology-ch05-s2",
+                      "title": "Fertilisation: internal and external, development of the embryo",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-biology-ch05-s3",
+                      "title": "Viviparous and oviparous animals, metamorphosis, asexual reproduction (budding, binary fission)",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-biology-ch06",
+                  "chapterNumber": 6,
+                  "title": "Reaching the Age of Adolescence",
+                  "subtopics": [
+                    {
+                      "id": "c8-biology-ch06-s1",
+                      "title": "Puberty, changes at puberty, secondary sexual characters",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-biology-ch06-s2",
+                      "title": "Role of hormones, endocrine glands",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-biology-ch06-s3",
+                      "title": "Reproductive phase of life, sex determination, health and hygiene",
+                      "videoId": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "branch": "Chemistry",
+              "id": "c8-chemistry",
+              "chapters": [
+                {
+                  "id": "c8-chemistry-ch01",
+                  "chapterNumber": 1,
+                  "title": "Synthetic Fibres and Plastics",
+                  "subtopics": [
+                    {
+                      "id": "c8-chemistry-ch01-s1",
+                      "title": "Types of synthetic fibres: rayon, nylon, polyester, acrylic",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-chemistry-ch01-s2",
+                      "title": "Plastics: thermoplastics and thermosetting plastics",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-chemistry-ch01-s3",
+                      "title": "Plastics and the environment, biodegradable and non-biodegradable materials",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-chemistry-ch02",
+                  "chapterNumber": 2,
+                  "title": "Materials: Metals and Non-Metals",
+                  "subtopics": [
+                    {
+                      "id": "c8-chemistry-ch02-s1",
+                      "title": "Physical properties of metals and non-metals",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-chemistry-ch02-s2",
+                      "title": "Chemical properties: reaction with oxygen, water, acids and bases",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-chemistry-ch02-s3",
+                      "title": "Displacement reactions, uses of metals and non-metals",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-chemistry-ch03",
+                  "chapterNumber": 3,
+                  "title": "Coal and Petroleum",
+                  "subtopics": [
+                    {
+                      "id": "c8-chemistry-ch03-s1",
+                      "title": "Natural resources, exhaustible and inexhaustible",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-chemistry-ch03-s2",
+                      "title": "Coal, coke, coal tar and coal gas; petroleum and its refining",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-chemistry-ch03-s3",
+                      "title": "Natural gas, petroleum conservation",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-chemistry-ch04",
+                  "chapterNumber": 4,
+                  "title": "Combustion and Flame",
+                  "subtopics": [
+                    {
+                      "id": "c8-chemistry-ch04-s1",
+                      "title": "Combustible and non-combustible substances",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-chemistry-ch04-s2",
+                      "title": "Ignition temperature, inflammable substances, fire control",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-chemistry-ch04-s3",
+                      "title": "Types of combustion, structure of a flame, fuel efficiency and calorific value",
+                      "videoId": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "branch": "Physics",
+              "id": "c8-physics",
+              "chapters": [
+                {
+                  "id": "c8-physics-ch01",
+                  "chapterNumber": 1,
+                  "title": "Force and Pressure",
+                  "subtopics": [
+                    {
+                      "id": "c8-physics-ch01-s1",
+                      "title": "Contact and non-contact forces, effects of force",
+                      "videoId": "WOn4O4jUMN4"
+                    },
+                    {
+                      "id": "c8-physics-ch01-s2",
+                      "title": "Pressure, pressure exerted by liquids and gases, atmospheric pressure",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-physics-ch02",
+                  "chapterNumber": 2,
+                  "title": "Friction",
+                  "subtopics": [
+                    {
+                      "id": "c8-physics-ch02-s1",
+                      "title": "Factors affecting friction, types: static, sliding, rolling",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-physics-ch02-s2",
+                      "title": "Friction as a necessary evil, increasing and reducing friction, fluid friction",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-physics-ch03",
+                  "chapterNumber": 3,
+                  "title": "Sound",
+                  "subtopics": [
+                    {
+                      "id": "c8-physics-ch03-s1",
+                      "title": "Production by vibration, propagation through a medium",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-physics-ch03-s2",
+                      "title": "Amplitude, time period, frequency, loudness and pitch",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-physics-ch03-s3",
+                      "title": "Audible and inaudible sounds, noise and music, noise pollution",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-physics-ch04",
+                  "chapterNumber": 4,
+                  "title": "Chemical Effects of Electric Current",
+                  "subtopics": [
+                    {
+                      "id": "c8-physics-ch04-s1",
+                      "title": "Good and poor conductors of electricity, conduction in liquids",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-physics-ch04-s2",
+                      "title": "Electroplating, uses of electroplating",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-physics-ch05",
+                  "chapterNumber": 5,
+                  "title": "Some Natural Phenomena",
+                  "subtopics": [
+                    {
+                      "id": "c8-physics-ch05-s1",
+                      "title": "Lightning, charging by rubbing, transfer of charge, electroscope",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-physics-ch05-s2",
+                      "title": "Earthquakes, protection against earthquakes",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-physics-ch06",
+                  "chapterNumber": 6,
+                  "title": "Light",
+                  "subtopics": [
+                    {
+                      "id": "c8-physics-ch06-s1",
+                      "title": "Laws of reflection, regular and diffused reflection",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-physics-ch06-s2",
+                      "title": "Reflected light as a source, multiple images, kaleidoscope",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-physics-ch06-s3",
+                      "title": "Structure of the human eye, Braille system, care of the eyes",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c8-physics-ch07",
+                  "chapterNumber": 7,
+                  "title": "Stars and the Solar System",
+                  "subtopics": [
+                    {
+                      "id": "c8-physics-ch07-s1",
+                      "title": "Moon, phases of the moon, stars, constellations",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-physics-ch07-s2",
+                      "title": "Planets of the solar system, other members, artificial satellites",
+                      "videoId": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "branch": "Environment and Earth Science",
+              "id": "c8-environment",
+              "chapters": [
+                {
+                  "id": "c8-environment-ch01",
+                  "chapterNumber": 1,
+                  "title": "Pollution of Air and Water",
+                  "subtopics": [
+                    {
+                      "id": "c8-environment-ch01-s1",
+                      "title": "Air pollution, causes and effects, greenhouse effect, global warming",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-environment-ch01-s2",
+                      "title": "Water pollution, causes and effects",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c8-environment-ch01-s3",
+                      "title": "Purification of water, what can be done to prevent pollution",
+                      "videoId": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "class": 9,
+      "subjects": [
+        {
+          "subject": "Mathematics",
+          "id": "c9-math",
+          "chapters": [
+            {
+              "id": "c9-math-ch01",
+              "chapterNumber": 1,
+              "title": "Number Systems",
+              "subtopics": [
+                {
+                  "id": "c9-math-ch01-s1",
+                  "title": "Rational and irrational numbers, real numbers and their decimal expansions",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch01-s2",
+                  "title": "Representing real numbers on the number line",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch01-s3",
+                  "title": "Operations on real numbers, rationalising denominators",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch01-s4",
+                  "title": "Laws of exponents for real numbers",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c9-math-ch02",
+              "chapterNumber": 2,
+              "title": "Polynomials",
+              "subtopics": [
+                {
+                  "id": "c9-math-ch02-s1",
+                  "title": "Polynomials in one variable, zeroes of a polynomial",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch02-s2",
+                  "title": "Remainder theorem and factor theorem",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch02-s3",
+                  "title": "Factorisation of polynomials, algebraic identities",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c9-math-ch03",
+              "chapterNumber": 3,
+              "title": "Coordinate Geometry",
+              "subtopics": [
+                {
+                  "id": "c9-math-ch03-s1",
+                  "title": "Cartesian system, axes, quadrants",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch03-s2",
+                  "title": "Plotting a point in the plane if its coordinates are given",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c9-math-ch04",
+              "chapterNumber": 4,
+              "title": "Linear Equations in Two Variables",
+              "subtopics": [
+                {
+                  "id": "c9-math-ch04-s1",
+                  "title": "Solutions of a linear equation in two variables",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch04-s2",
+                  "title": "Graph of a linear equation, equations of lines parallel to the axes",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c9-math-ch05",
+              "chapterNumber": 5,
+              "title": "Introduction to Euclid's Geometry",
+              "subtopics": [
+                {
+                  "id": "c9-math-ch05-s1",
+                  "title": "Euclid's definitions, axioms and postulates",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch05-s2",
+                  "title": "Equivalent versions of the fifth postulate",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c9-math-ch06",
+              "chapterNumber": 6,
+              "title": "Lines and Angles",
+              "subtopics": [
+                {
+                  "id": "c9-math-ch06-s1",
+                  "title": "Basic terms and definitions, intersecting and non-intersecting lines",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch06-s2",
+                  "title": "Pairs of angles, parallel lines and a transversal",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch06-s3",
+                  "title": "Angle sum property of a triangle",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c9-math-ch07",
+              "chapterNumber": 7,
+              "title": "Triangles",
+              "subtopics": [
+                {
+                  "id": "c9-math-ch07-s1",
+                  "title": "Congruence of triangles, criteria SAS, ASA, AAS, SSS, RHS",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch07-s2",
+                  "title": "Properties of a triangle, isosceles triangle properties",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch07-s3",
+                  "title": "Inequalities in a triangle",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c9-math-ch08",
+              "chapterNumber": 8,
+              "title": "Quadrilaterals",
+              "subtopics": [
+                {
+                  "id": "c9-math-ch08-s1",
+                  "title": "Angle sum property of a quadrilateral",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch08-s2",
+                  "title": "Types of quadrilaterals, properties of a parallelogram",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch08-s3",
+                  "title": "Mid-point theorem",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c9-math-ch09",
+              "chapterNumber": 9,
+              "title": "Circles",
+              "subtopics": [
+                {
+                  "id": "c9-math-ch09-s1",
+                  "title": "Circle, chord, arc, segment and sector",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch09-s2",
+                  "title": "Angle subtended by a chord at a point, perpendicular from the centre to a chord",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch09-s3",
+                  "title": "Equal chords and their distances from the centre, angles in the same segment",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch09-s4",
+                  "title": "Cyclic quadrilaterals",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c9-math-ch10",
+              "chapterNumber": 10,
+              "title": "Heron's Formula",
+              "subtopics": [
+                {
+                  "id": "c9-math-ch10-s1",
+                  "title": "Area of a triangle by Heron's formula",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch10-s2",
+                  "title": "Application to quadrilaterals",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c9-math-ch11",
+              "chapterNumber": 11,
+              "title": "Surface Areas and Volumes",
+              "subtopics": [
+                {
+                  "id": "c9-math-ch11-s1",
+                  "title": "Surface area of cuboid, cube, right circular cylinder and cone",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch11-s2",
+                  "title": "Surface area of sphere",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch11-s3",
+                  "title": "Volumes of cuboid, cylinder, cone and sphere",
+                  "videoId": null
+                }
+              ]
+            },
+            {
+              "id": "c9-math-ch12",
+              "chapterNumber": 12,
+              "title": "Statistics",
+              "subtopics": [
+                {
+                  "id": "c9-math-ch12-s1",
+                  "title": "Collection and presentation of data",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch12-s2",
+                  "title": "Graphical representation: bar graphs, histograms, frequency polygons",
+                  "videoId": null
+                },
+                {
+                  "id": "c9-math-ch12-s3",
+                  "title": "Measures of central tendency: mean, median, mode",
+                  "videoId": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "subject": "Science",
+          "id": "c9-sci",
+          "branches": [
+            {
+              "branch": "Chemistry",
+              "id": "c9-chemistry",
+              "chapters": [
+                {
+                  "id": "c9-chemistry-ch01",
+                  "chapterNumber": 1,
+                  "title": "Matter in Our Surroundings",
+                  "subtopics": [
+                    {
+                      "id": "c9-chemistry-ch01-s1",
+                      "title": "Physical nature of matter, characteristics of particles",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-chemistry-ch01-s2",
+                      "title": "States of matter: solid, liquid, gas",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-chemistry-ch01-s3",
+                      "title": "Change of state: melting, boiling, evaporation, sublimation",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-chemistry-ch01-s4",
+                      "title": "Latent heat, factors affecting evaporation",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c9-chemistry-ch02",
+                  "chapterNumber": 2,
+                  "title": "Is Matter Around Us Pure?",
+                  "subtopics": [
+                    {
+                      "id": "c9-chemistry-ch02-s1",
+                      "title": "Mixtures and pure substances, types of mixtures",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-chemistry-ch02-s2",
+                      "title": "Solutions, suspensions and colloids",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-chemistry-ch02-s3",
+                      "title": "Separation techniques: filtration, distillation, chromatography, crystallisation",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-chemistry-ch02-s4",
+                      "title": "Physical and chemical changes, elements and compounds",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c9-chemistry-ch03",
+                  "chapterNumber": 3,
+                  "title": "Atoms and Molecules",
+                  "subtopics": [
+                    {
+                      "id": "c9-chemistry-ch03-s1",
+                      "title": "Laws of chemical combination",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-chemistry-ch03-s2",
+                      "title": "Atoms, molecules, ions, symbols and chemical formulae",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-chemistry-ch03-s3",
+                      "title": "Atomic mass, molecular mass, the mole concept",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c9-chemistry-ch04",
+                  "chapterNumber": 4,
+                  "title": "Structure of the Atom",
+                  "subtopics": [
+                    {
+                      "id": "c9-chemistry-ch04-s1",
+                      "title": "Charged particles, Thomson's and Rutherford's models",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-chemistry-ch04-s2",
+                      "title": "Bohr's model, distribution of electrons in orbits",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-chemistry-ch04-s3",
+                      "title": "Valency, atomic number, mass number, isotopes and isobars",
+                      "videoId": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "branch": "Biology",
+              "id": "c9-biology",
+              "chapters": [
+                {
+                  "id": "c9-biology-ch01",
+                  "chapterNumber": 1,
+                  "title": "The Fundamental Unit of Life",
+                  "subtopics": [
+                    {
+                      "id": "c9-biology-ch01-s1",
+                      "title": "Cell structure, plasma membrane, cell wall",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-biology-ch01-s2",
+                      "title": "Nucleus, cytoplasm and cell organelles",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-biology-ch01-s3",
+                      "title": "Diffusion, osmosis, prokaryotic and eukaryotic cells",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c9-biology-ch02",
+                  "chapterNumber": 2,
+                  "title": "Tissues",
+                  "subtopics": [
+                    {
+                      "id": "c9-biology-ch02-s1",
+                      "title": "Plant tissues: meristematic and permanent",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-biology-ch02-s2",
+                      "title": "Animal tissues: epithelial, connective, muscular, nervous",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c9-biology-ch03",
+                  "chapterNumber": 3,
+                  "title": "Improvement in Food Resources",
+                  "subtopics": [
+                    {
+                      "id": "c9-biology-ch03-s1",
+                      "title": "Crop variety improvement, crop production management",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-biology-ch03-s2",
+                      "title": "Nutrient management, irrigation, cropping patterns, crop protection",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-biology-ch03-s3",
+                      "title": "Animal husbandry: cattle farming, poultry, fish production, bee-keeping",
+                      "videoId": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "branch": "Physics",
+              "id": "c9-physics",
+              "chapters": [
+                {
+                  "id": "c9-physics-ch01",
+                  "chapterNumber": 1,
+                  "title": "Motion",
+                  "subtopics": [
+                    {
+                      "id": "c9-physics-ch01-s1",
+                      "title": "Distance and displacement, uniform and non-uniform motion",
+                      "videoId": "JQf79GCKHfY"
+                    },
+                    {
+                      "id": "c9-physics-ch01-s2",
+                      "title": "Speed, velocity, acceleration",
+                      "videoId": "aOf_WzLwcBc"
+                    },
+                    {
+                      "id": "c9-physics-ch01-s3",
+                      "title": "Graphical representation, equations of motion, uniform circular motion",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c9-physics-ch02",
+                  "chapterNumber": 2,
+                  "title": "Force and Laws of Motion",
+                  "subtopics": [
+                    {
+                      "id": "c9-physics-ch02-s1",
+                      "title": "Balanced and unbalanced forces",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-physics-ch02-s2",
+                      "title": "Newton's three laws of motion, inertia",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-physics-ch02-s3",
+                      "title": "Conservation of momentum",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c9-physics-ch03",
+                  "chapterNumber": 3,
+                  "title": "Gravitation",
+                  "subtopics": [
+                    {
+                      "id": "c9-physics-ch03-s1",
+                      "title": "Universal law of gravitation, free fall, acceleration due to gravity",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-physics-ch03-s2",
+                      "title": "Mass and weight, thrust and pressure",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-physics-ch03-s3",
+                      "title": "Archimedes' principle, buoyancy, relative density",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c9-physics-ch04",
+                  "chapterNumber": 4,
+                  "title": "Work and Energy",
+                  "subtopics": [
+                    {
+                      "id": "c9-physics-ch04-s1",
+                      "title": "Work done, energy, kinetic and potential energy",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-physics-ch04-s2",
+                      "title": "Law of conservation of energy, power, commercial unit of energy",
+                      "videoId": null
+                    }
+                  ]
+                },
+                {
+                  "id": "c9-physics-ch05",
+                  "chapterNumber": 5,
+                  "title": "Sound",
+                  "subtopics": [
+                    {
+                      "id": "c9-physics-ch05-s1",
+                      "title": "Production and propagation of sound, longitudinal waves",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-physics-ch05-s2",
+                      "title": "Characteristics: wavelength, frequency, speed, amplitude",
+                      "videoId": null
+                    },
+                    {
+                      "id": "c9-physics-ch05-s3",
+                      "title": "Reflection of sound, echo, range of hearing, applications of ultrasound, structure of the human ear",
+                      "videoId": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -44,16 +44,24 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Brand Logo & Name */}
           <div
             onClick={onHomeClick}
-            className="flex items-center gap-2 cursor-pointer group"
+            className="flex items-center gap-2.5 cursor-pointer group"
           >
-            <div className="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-base font-bold text-amber-400">
-              S
-            </div>
+            <img
+              src="/logo.svg"
+              alt="StoryLearn"
+              className="w-10 h-10 sm:w-11 sm:h-11 object-contain shrink-0 group-hover:scale-105 transition-transform"
+            />
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="text-base font-bold tracking-tight text-white group-hover:text-amber-400 transition-colors">
                   Story<span className="text-amber-400">Learn</span>
                 </span>
+                <span className="text-[10px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/40 px-1.5 py-0.2 rounded font-bold">
+                  AI
+                </span>
+              </div>
+              <div className="text-[10px] text-slate-400 -mt-0.5 hidden sm:block">
+                Stories · Understanding · Mastery
               </div>
             </div>
           </div>

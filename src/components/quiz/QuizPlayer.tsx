@@ -118,7 +118,8 @@ export const QuizPlayer: React.FC<QuizPlayerProps> = ({
       <div className="flex items-center justify-between bg-slate-900/90 border border-slate-800 p-4 rounded-2xl shadow-lg backdrop-blur-md">
         <button
           onClick={onBack}
-          className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer"
+          aria-label="Back to Story"
+          className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
@@ -141,7 +142,8 @@ export const QuizPlayer: React.FC<QuizPlayerProps> = ({
             <button
               key={q.id}
               onClick={() => setCurrentIdx(idx)}
-              className={`h-2.5 flex-1 rounded-full transition-all cursor-pointer ${
+              aria-label={`Jump to question ${idx + 1}`}
+              className={`h-2.5 flex-1 rounded-full transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none ${
                 isCurrent
                   ? 'bg-amber-400 ring-2 ring-amber-400/50 scale-105'
                   : isAnswered

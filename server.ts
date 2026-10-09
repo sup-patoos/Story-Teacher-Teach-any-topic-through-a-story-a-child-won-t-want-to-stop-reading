@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { GoogleGenAI, Type } from '@google/genai';
+import { executeAiCallWithRetry, sanitizeInput } from './src/services/aiHandler';
 
 dotenv.config();
 
@@ -10,7 +11,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-app.use(express.json({ limit: '10mb' }));
+// Validate and limit JSON body size to prevent payload denial of service
+app.use(express.json({ limit: '500kb' }));
 
 // Initialize GoogleGenAI with telemetry User-Agent header as required
 const apiKey = process.env.GEMINI_API_KEY || '';
@@ -29,6 +31,34 @@ const hasValidApiKey = Boolean(apiKey && apiKey !== 'MY_GEMINI_API_KEY');
 // List of Flash models to try in order of resilience
 const FLASH_MODELS = ['gemini-3.1-flash-lite', 'gemini-3.8-flash'];
 
+// In-memory rate limiting for AI endpoints: max 60 requests/minute per client IP
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const MAX_REQUESTS_PER_MINUTE = 60;
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+
+function apiRateLimiter(req: express.Request, res: express.Response, next: express.NextFunction) {
+  const ip = (req.headers['x-forwarded-for'] as string) || req.socket.remoteAddress || 'unknown-client';
+  const now = Date.now();
+  const clientRecord = rateLimitMap.get(ip);
+
+  if (!clientRecord || now > clientRecord.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return next();
+  }
+
+  if (clientRecord.count >= MAX_REQUESTS_PER_MINUTE) {
+    return res.status(429).json({
+      error: 'Too many requests. Please wait a moment before trying again.',
+      status: 429
+    });
+  }
+
+  clientRecord.count += 1;
+  next();
+}
+
+app.use('/api', apiRateLimiter);
+
 /**
  * Helper to call Gemini with Gemini Flash, JSON response schema,
  * automatic retry, and exact error logging to console.
@@ -41,40 +71,37 @@ async function callGeminiFlashWithJsonRetry(
 ): Promise<any> {
   let lastError: any = null;
 
-  // Try across available Flash models and retry once on failure
+  // Try across available Flash models and retry on transient failures
   for (const model of FLASH_MODELS) {
-    for (let attempt = 1; attempt <= 2; attempt++) {
-      try {
-        const response = await ai.models.generateContent({
-          model: model,
-          contents: contents,
-          config: {
-            systemInstruction: systemInstruction,
-            responseMimeType: 'application/json',
-            responseSchema: responseSchema,
-          },
-        });
-
-        const rawText = response.text?.trim() || '';
-        if (!rawText) {
-          throw new Error('Empty response received from Gemini');
+    try {
+      return await executeAiCallWithRetry(
+        async () => {
+          const response = await ai.models.generateContent({
+            model: model,
+            contents: contents,
+            config: {
+              systemInstruction: systemInstruction,
+              responseMimeType: 'application/json',
+              responseSchema: responseSchema,
+            },
+          });
+          return { text: response.text };
+        },
+        {
+          maxRetries: 1,
+          initialBackoffMs: 800,
+          logError: (msg) => {
+            console.error(`[Gemini API Warning] ${endpointName} | Model: ${model} | ${msg}`);
+          }
         }
-
-        const parsed = JSON.parse(rawText);
-        return parsed;
-      } catch (err: any) {
-        lastError = err;
-        const statusCode = err?.status || err?.code || 500;
-        const message = err?.message || String(err);
-        console.error(
-          `[Gemini API Error] ${endpointName} | Model: ${model} | Attempt ${attempt}/2 | Status: ${statusCode} | Message: ${message}`
-        );
-
-        // Small delay before retry
-        if (attempt === 1) {
-          await new Promise((r) => setTimeout(r, 800));
-        }
-      }
+      );
+    } catch (err: any) {
+      lastError = err;
+      const statusCode = err?.status || err?.code || 500;
+      const message = err?.message || String(err);
+      console.error(
+        `[Gemini API Error] ${endpointName} | Model: ${model} | Status: ${statusCode} | Message: ${message}`
+      );
     }
   }
 
@@ -163,27 +190,26 @@ function getTypicalAgeForClass(classNum?: number | string): number {
 // 1. POST /api/validate-topic
 // ----------------------------------------------------
 app.post('/api/validate-topic', async (req, res) => {
-  const { topic, level = 'Class 8', age, ageBand } = req.body;
-  if (!topic || typeof topic !== 'string' || topic.trim().length === 0) {
-    return res.status(400).json({ error: 'Topic is required' });
+  const { topic, level = 'Class 8', age, ageBand } = req.body || {};
+  const cleanTopic = sanitizeInput(topic, 200);
+  if (!cleanTopic) {
+    return res.status(400).json({ error: 'Valid topic string is required (up to 200 characters)' });
   }
 
   const effectiveAge = age ? Number(age) : getTypicalAgeForClass(level);
   const effectiveAgeBand = ageBand || getAgeBand(effectiveAge);
 
-  const trimmedTopic = topic.trim().slice(0, 150);
-
   if (!hasValidApiKey) {
     console.warn('[Gemini Warning] process.env.GEMINI_API_KEY is not configured or empty');
-    const slug = trimmedTopic.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    const subject = classifySubjectHeuristic(trimmedTopic);
+    const slug = cleanTopic.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const subject = classifySubjectHeuristic(cleanTopic);
     return res.json({
       isValidLearningTopic: true,
       subject: subject,
       isSafeForKids: true,
-      suggestedTitle: trimmedTopic,
+      suggestedTitle: cleanTopic,
       conceptId: slug || 'curiosity-concept',
-      suggestedBetterQuery: trimmedTopic,
+      suggestedBetterQuery: cleanTopic,
       alternativeSuggestions: ["Newton's laws of motion", "Why do we have seasons?", "Photosynthesis in plants"]
     });
   }
@@ -230,14 +256,14 @@ Always return clean JSON following the schema.`;
   try {
     const parsed = await callGeminiFlashWithJsonRetry(
       'POST /api/validate-topic',
-      `Validate this learning topic for student (${level}, Age ${effectiveAge}, Band ${effectiveAgeBand}): "${trimmedTopic}". Determine the exact subject.`,
+      `Validate this learning topic for student (${level}, Age ${effectiveAge}, Band ${effectiveAgeBand}): "${cleanTopic}". Determine the exact subject.`,
       systemInstruction,
       schema
     );
 
     // Ensure subject is never incorrectly 'Other' if a known heuristic matches
     if (parsed.subject === 'Other' || !parsed.subject) {
-      const heuristic = classifySubjectHeuristic(trimmedTopic);
+      const heuristic = classifySubjectHeuristic(cleanTopic);
       if (heuristic !== 'Other') {
         parsed.subject = heuristic;
       }
@@ -248,14 +274,14 @@ Always return clean JSON following the schema.`;
     const status = error?.status || error?.code || 500;
     console.error(`[Gemini API Fatal Error] /api/validate-topic: Status: ${status}, Message: ${error?.message || error}`);
 
-    const fallbackSlug = trimmedTopic.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-    const heuristicSubject = classifySubjectHeuristic(trimmedTopic);
+    const fallbackSlug = cleanTopic.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    const heuristicSubject = classifySubjectHeuristic(cleanTopic);
 
     return res.json({
       isValidLearningTopic: true,
       subject: heuristicSubject,
       isSafeForKids: true,
-      suggestedTitle: trimmedTopic,
+      suggestedTitle: cleanTopic,
       conceptId: fallbackSlug,
       alternativeSuggestions: ["Laws of Motion", "Why do we have seasons?", "Pythagoras theorem"]
     });
@@ -276,11 +302,16 @@ app.post('/api/generate-story', async (req, res) => {
     currentMastery = 50,
     age,
     ageBand
-  } = req.body;
+  } = req.body || {};
 
-  if (!topic) {
-    return res.status(400).json({ error: 'Topic is required' });
+  const cleanTopic = sanitizeInput(topic, 300);
+  if (!cleanTopic) {
+    return res.status(400).json({ error: 'Valid topic is required (up to 300 characters)' });
   }
+
+  const cleanChapter = sanitizeInput(chapterTitle, 200);
+  const cleanSubtopic = sanitizeInput(subtopicTitle, 200);
+  const cleanConceptId = sanitizeInput(conceptId, 100);
 
   const effectiveAge = age ? Number(age) : getTypicalAgeForClass(classNum || level);
   const effectiveAgeBand = ageBand || getAgeBand(effectiveAge);
@@ -440,9 +471,9 @@ Always output pure structured JSON conforming strictly to the response schema.`;
     const parsed = await callGeminiFlashWithJsonRetry(
       'POST /api/generate-story',
       `Create an interactive learning story for:
-Topic: "${topic}"
-Concept ID: "${conceptId || 'concept'}"
-Syllabus Context: Chapter "${chapterTitle}", Subtopic "${subtopicTitle}", Class ${classNum || level}.
+Topic: "${cleanTopic}"
+Concept ID: "${cleanConceptId || 'concept'}"
+Syllabus Context: Chapter "${cleanChapter}", Subtopic "${cleanSubtopic}", Class ${classNum || level}.
 ${levelPromptModifier}`,
       systemInstruction,
       schema
@@ -454,7 +485,7 @@ ${levelPromptModifier}`,
     const message = error?.message || String(error);
     console.error(`[Gemini API Fatal Error] /api/generate-story: Status: ${status}, Message: ${message}`);
     return res.status(status).json({
-      error: `Failed to generate story with Gemini: ${message}`,
+      error: 'Unable to generate interactive story at this time. Please try again.',
       status: status
     });
   }
@@ -464,10 +495,11 @@ ${levelPromptModifier}`,
 // 3. POST /api/generate-text-story (Plain Text Story Fallback)
 // ----------------------------------------------------
 app.post('/api/generate-text-story', async (req, res) => {
-  const { topic, level = 'Class 8', classNum, age, ageBand } = req.body;
+  const { topic, level = 'Class 8', classNum, age, ageBand } = req.body || {};
 
-  if (!topic) {
-    return res.status(400).json({ error: 'Topic is required' });
+  const cleanTopic = sanitizeInput(topic, 300);
+  if (!cleanTopic) {
+    return res.status(400).json({ error: 'Valid topic is required (up to 300 characters)' });
   }
 
   const effectiveAge = age ? Number(age) : getTypicalAgeForClass(classNum || level);
@@ -511,7 +543,7 @@ Include everyday Indian relatable examples and dialogue.`;
   try {
     const parsed = await callGeminiFlashWithJsonRetry(
       'POST /api/generate-text-story',
-      `Write an engaging educational narrative story explaining: "${topic}" for age ${effectiveAge} (Band: ${effectiveAgeBand}, ${level}).`,
+      `Write an engaging educational narrative story explaining: "${cleanTopic}" for age ${effectiveAge} (Band: ${effectiveAgeBand}, ${level}).`,
       systemInstruction,
       schema
     );
@@ -522,7 +554,7 @@ Include everyday Indian relatable examples and dialogue.`;
     const message = error?.message || String(error);
     console.error(`[Gemini API Fatal Error] /api/generate-text-story: Status: ${status}, Message: ${message}`);
     return res.status(status).json({
-      error: `Failed to generate text story: ${message}`,
+      error: 'Unable to generate story summary at this time. Please try again.',
       status: status
     });
   }
@@ -532,11 +564,15 @@ Include everyday Indian relatable examples and dialogue.`;
 // 4. POST /api/generate-quiz
 // ----------------------------------------------------
 app.post('/api/generate-quiz', async (req, res) => {
-  const { topic, conceptId, level = 'Class 8', classNum, subtopicTitle = '', age, ageBand } = req.body;
+  const { topic, conceptId, level = 'Class 8', classNum, subtopicTitle = '', age, ageBand } = req.body || {};
 
-  if (!topic) {
-    return res.status(400).json({ error: 'Topic is required' });
+  const cleanTopic = sanitizeInput(topic, 300);
+  if (!cleanTopic) {
+    return res.status(400).json({ error: 'Valid topic is required (up to 300 characters)' });
   }
+
+  const cleanSubtopic = sanitizeInput(subtopicTitle, 200);
+  const cleanConceptId = sanitizeInput(conceptId, 100);
 
   const effectiveAge = age ? Number(age) : getTypicalAgeForClass(classNum || level);
   const effectiveAgeBand = ageBand || getAgeBand(effectiveAge);
@@ -625,7 +661,7 @@ At least one question MUST expose a common misconception! Return pure JSON.`;
   try {
     const parsed = await callGeminiFlashWithJsonRetry(
       'POST /api/generate-quiz',
-      `Generate a ${targetQuestionCount}-question diagnostic quiz for: Topic: "${topic}" (${level}, Age ${effectiveAge}, Band ${effectiveAgeBand}). Subtopic: "${subtopicTitle}".`,
+      `Generate a ${targetQuestionCount}-question diagnostic quiz for: Topic: "${cleanTopic}" (${level}, Age ${effectiveAge}, Band ${effectiveAgeBand}). Subtopic: "${cleanSubtopic}". Concept: "${cleanConceptId}".`,
       systemInstruction,
       schema
     );
@@ -634,7 +670,7 @@ At least one question MUST expose a common misconception! Return pure JSON.`;
     const status = error?.status || error?.code || 500;
     const message = error?.message || String(error);
     console.error(`[Gemini API Fatal Error] /api/generate-quiz: Status: ${status}, Message: ${message}`);
-    return res.status(status).json({ error: `Failed to generate quiz: ${message}`, status: status });
+    return res.status(status).json({ error: 'Unable to generate quiz at this time. Please try again.', status: status });
   }
 });
 
@@ -642,11 +678,20 @@ At least one question MUST expose a common misconception! Return pure JSON.`;
 // 5. POST /api/analyze-answers
 // ----------------------------------------------------
 app.post('/api/analyze-answers', async (req, res) => {
-  const { topic, level = 'Class 8', questions = [], answers = [], age, ageBand } = req.body;
+  const { topic, level = 'Class 8', questions = [], answers = [], age, ageBand } = req.body || {};
 
-  if (!topic || !answers.length) {
-    return res.status(400).json({ error: 'Topic and answers are required' });
+  const cleanTopic = sanitizeInput(topic, 300);
+  if (!cleanTopic || !Array.isArray(answers) || answers.length === 0) {
+    return res.status(400).json({ error: 'Valid topic and answers array are required' });
   }
+
+  // Length limit answers and questions to prevent payload abuse
+  const boundedAnswers = answers.slice(0, 20).map(a => ({
+    questionId: sanitizeInput(a?.questionId, 100),
+    answer: sanitizeInput(a?.answer, 1000),
+    isCorrect: Boolean(a?.isCorrect)
+  }));
+  const boundedQuestions = Array.isArray(questions) ? questions.slice(0, 20) : [];
 
   const effectiveAge = age ? Number(age) : getTypicalAgeForClass(level);
   const effectiveAgeBand = ageBand || getAgeBand(effectiveAge);
@@ -724,7 +769,14 @@ Evaluate student answers deeply, comparing against true physical and mathematica
 Ensure feedbackForChild is warm, enthusiastic, and easily understood by a child aged ${effectiveAge}.`;
 
   try {
-    const payload = JSON.stringify({ topic, level, age: effectiveAge, ageBand: effectiveAgeBand, questions, learnerAnswers: answers });
+    const payload = JSON.stringify({
+      topic: cleanTopic,
+      level,
+      age: effectiveAge,
+      ageBand: effectiveAgeBand,
+      questions: boundedQuestions,
+      learnerAnswers: boundedAnswers
+    });
     const parsed = await callGeminiFlashWithJsonRetry(
       'POST /api/analyze-answers',
       `Analyze this student's understanding based on their quiz answers:\n${payload}`,
@@ -736,7 +788,7 @@ Ensure feedbackForChild is warm, enthusiastic, and easily understood by a child 
     const status = error?.status || error?.code || 500;
     const message = error?.message || String(error);
     console.error(`[Gemini API Fatal Error] /api/analyze-answers: Status: ${status}, Message: ${message}`);
-    return res.status(status).json({ error: `Failed to analyze answers: ${message}`, status: status });
+    return res.status(status).json({ error: 'Unable to analyze responses at this time. Please try again.', status: status });
   }
 });
 
@@ -744,10 +796,14 @@ Ensure feedbackForChild is warm, enthusiastic, and easily understood by a child 
 // 6. POST /api/generate-corrective
 // ----------------------------------------------------
 app.post('/api/generate-corrective', async (req, res) => {
-  const { topic, level = 'Class 8', misconception, childAnswer = '', age, ageBand } = req.body;
+  const { topic, level = 'Class 8', misconception, childAnswer = '', age, ageBand } = req.body || {};
 
-  if (!topic || !misconception) {
-    return res.status(400).json({ error: 'Topic and misconception are required' });
+  const cleanTopic = sanitizeInput(topic, 300);
+  const cleanMisconception = sanitizeInput(misconception, 300);
+  const cleanAnswer = sanitizeInput(childAnswer, 500);
+
+  if (!cleanTopic || !cleanMisconception) {
+    return res.status(400).json({ error: 'Valid topic and misconception strings are required' });
   }
 
   const effectiveAge = age ? Number(age) : getTypicalAgeForClass(level);
@@ -805,9 +861,9 @@ Adapt explanations and re-check questions to fit this age band seamlessly.`;
     const parsed = await callGeminiFlashWithJsonRetry(
       'POST /api/generate-corrective',
       `Create a punchy, warm corrective story (2 short scenes) and 1-2 re-check questions to gently cure this student misconception:
-Topic: "${topic}" (${level}, Age ${effectiveAge}, Band ${effectiveAgeBand})
-Misconception: "${misconception}"
-Student's mistaken answer: "${childAnswer}"`,
+Topic: "${cleanTopic}" (${level}, Age ${effectiveAge}, Band ${effectiveAgeBand})
+Misconception: "${cleanMisconception}"
+Student's mistaken answer: "${cleanAnswer}"`,
       systemInstruction,
       schema
     );
@@ -816,7 +872,7 @@ Student's mistaken answer: "${childAnswer}"`,
     const status = error?.status || error?.code || 500;
     const message = error?.message || String(error);
     console.error(`[Gemini API Fatal Error] /api/generate-corrective: Status: ${status}, Message: ${message}`);
-    return res.status(status).json({ error: `Failed to generate corrective story: ${message}`, status: status });
+    return res.status(status).json({ error: 'Unable to generate corrective explanation at this time. Please try again.', status: status });
   }
 });
 

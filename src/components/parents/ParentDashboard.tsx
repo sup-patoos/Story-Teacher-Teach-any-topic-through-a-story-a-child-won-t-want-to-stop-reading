@@ -20,7 +20,10 @@ import {
   getAllMasteryRecords,
   getTodayStudyTimeSeconds,
   getStudentProfile,
-  updateStudentAge
+  updateStudentAge,
+  verifyParentPin,
+  hashParentPin,
+  generateDailyReportSummary
 } from '../../services/storageService';
 import {
   Lock,
@@ -80,7 +83,7 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
 
   const handlePinSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (pinInput === settings.pin) {
+    if (verifyParentPin(pinInput, settings)) {
       setIsAuthenticated(true);
       setPinError(false);
     } else {
@@ -98,7 +101,7 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
   const handleChangePin = (e: React.FormEvent) => {
     e.preventDefault();
     if (newPin.length === 4) {
-      handleSaveSettings({ pin: newPin });
+      handleSaveSettings({ pinHash: hashParentPin(newPin) });
       setIsChangingPin(false);
       setNewPin('');
     }
@@ -199,7 +202,8 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
 
           <button
             onClick={handlePrint}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer"
+            aria-label="Print or save daily progress report as PDF"
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none"
             title="Print or Save PDF"
           >
             <Printer className="w-4 h-4" />
@@ -207,7 +211,8 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
 
           <button
             onClick={() => setIsChangingPin(true)}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer"
+            aria-label="Change parent portal 4-digit PIN"
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none"
             title="Change PIN"
           >
             <KeyRound className="w-4 h-4" />

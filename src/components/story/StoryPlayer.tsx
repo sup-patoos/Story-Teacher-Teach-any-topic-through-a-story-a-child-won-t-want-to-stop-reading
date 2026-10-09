@@ -147,7 +147,8 @@ export const StoryPlayer: React.FC<StoryPlayerProps> = ({
         <div className="flex items-center gap-3">
           <button
             onClick={onBack}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer"
+            aria-label="Back to Learning Modes"
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none"
             title="Back to Learning Modes"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -189,7 +190,8 @@ export const StoryPlayer: React.FC<StoryPlayerProps> = ({
           {!isSpeaking || isPaused ? (
             <button
               onClick={handlePlaySpeech}
-              className="p-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition-all cursor-pointer"
+              aria-label="Play Narration"
+              className="p-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none"
               title="Play Narration"
             >
               <Play className="w-3.5 h-3.5 fill-current" />
@@ -197,7 +199,8 @@ export const StoryPlayer: React.FC<StoryPlayerProps> = ({
           ) : (
             <button
               onClick={handlePauseSpeech}
-              className="p-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition-all cursor-pointer"
+              aria-label="Pause Narration"
+              className="p-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none"
               title="Pause Narration"
             >
               <Pause className="w-3.5 h-3.5 fill-current" />
@@ -207,7 +210,8 @@ export const StoryPlayer: React.FC<StoryPlayerProps> = ({
           <button
             onClick={stopSpeech}
             disabled={!isSpeaking && !isPaused}
-            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-slate-300 transition-all cursor-pointer"
+            aria-label="Stop Narration"
+            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-slate-300 transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none"
             title="Stop"
           >
             <Square className="w-3.5 h-3.5 fill-current" />
@@ -216,13 +220,14 @@ export const StoryPlayer: React.FC<StoryPlayerProps> = ({
           {/* Speed Selector */}
           <select
             value={speechRate}
+            aria-label="Narration speed"
             onChange={(e) => {
               setSpeechRate(parseFloat(e.target.value));
               if (isSpeaking) {
                 stopSpeech();
               }
             }}
-            className="text-[11px] bg-slate-800 text-slate-300 border border-slate-700 rounded px-1.5 py-1 focus:outline-none cursor-pointer"
+            className="text-[11px] bg-slate-800 text-slate-300 border border-slate-700 rounded px-1.5 py-1 focus:outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400"
           >
             <option value="0.8">0.8x</option>
             <option value="1.0">1.0x</option>

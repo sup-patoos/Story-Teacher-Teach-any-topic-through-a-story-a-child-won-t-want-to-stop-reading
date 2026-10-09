@@ -296,6 +296,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-950 via-slate-950 to-purple-950 selection:bg-amber-500 selection:text-slate-950 pb-20 md:pb-8 flex flex-col font-sans">
+      {/* Skip to main content accessibility link */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-amber-400 focus:text-slate-950 focus:font-bold focus:rounded-xl focus:shadow-xl focus:ring-2 focus:ring-white"
+      >
+        Skip to main content
+      </a>
+
       {/* Global Navigation */}
       <Navbar
         currentTab={currentTab}
@@ -304,7 +312,7 @@ export default function App() {
       />
 
       {/* Main View Router */}
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
         {/* Loading Overlay */}
         {isLoadingContent && (
           <div className="max-w-md mx-auto px-4 py-28 text-center space-y-6">

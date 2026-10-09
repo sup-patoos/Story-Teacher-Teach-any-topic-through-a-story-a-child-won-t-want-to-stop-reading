@@ -221,6 +221,27 @@ export function getTodayStudyTimeSeconds(): number {
 
 // ---------------- CONCEPT MASTERY ENGINE ----------------
 
+/**
+ * Calculates updated concept mastery score:
+ * - Weights recent attempts more (60% regular attempt, 70% post-corrective recheck)
+ * - Always clamped strictly within 0 - 100
+ */
+export function calculateUpdatedMasteryScore(
+  prevScore: number | undefined,
+  quizScore: number,
+  isRecheck: boolean = false
+): number {
+  const boundedQuiz = Math.min(100, Math.max(0, quizScore));
+  if (prevScore === undefined) {
+    return Math.min(100, Math.max(0, Math.round(boundedQuiz)));
+  }
+  const boundedPrev = Math.min(100, Math.max(0, prevScore));
+  if (isRecheck) {
+    return Math.min(100, Math.max(0, Math.round(boundedPrev * 0.3 + boundedQuiz * 0.7)));
+  }
+  return Math.min(100, Math.max(0, Math.round(boundedPrev * 0.4 + boundedQuiz * 0.6)));
+}
+
 export function getMasteryTier(score: number): MasteryTier {
   if (score >= 90) return 'Mastered';
   if (score >= 70) return 'Strong';
@@ -287,14 +308,11 @@ export function updateConceptMastery(
 
   if (existing) {
     const prevScore = existing.masteryScore;
+    newMasteryScore = calculateUpdatedMasteryScore(prevScore, quizScore, isRecheck);
     if (isRecheck) {
-      // If passing recheck after corrective story, weight new understanding heavily!
-      newMasteryScore = Math.min(100, Math.round(prevScore * 0.3 + quizScore * 0.7));
       existing.postCorrectiveScore = newMasteryScore;
       existing.hasPassedRecheck = quizScore >= 70;
     } else {
-      // Weight recent attempt 60%, prior mastery 40%
-      newMasteryScore = Math.round(prevScore * 0.4 + quizScore * 0.6);
       existing.preCorrectiveScore = prevScore;
     }
 
@@ -365,6 +383,15 @@ export function updateConceptMastery(
 
 // ---------------- CONTENT CACHE ----------------
 
+/**
+ * Generates cache key for stories and quizzes ensuring different
+ * age bands or education levels never collide.
+ */
+export function generateCacheKey(conceptId: string, level: string, age?: number): string {
+  const band = getAgeBand(age);
+  return `${conceptId}__${level}__${band}`;
+}
+
 export function getCachedStory(conceptId: string, level: string, age?: number): InteractiveStory | null {
   // Check preloaded first
   if (PRELOADED_TOPICS[conceptId]) {
@@ -374,8 +401,7 @@ export function getCachedStory(conceptId: string, level: string, age?: number): 
     const raw = localStorage.getItem(STORAGE_KEYS.CACHE_STORIES);
     if (!raw) return null;
     const cache = JSON.parse(raw);
-    const band = getAgeBand(age);
-    const keyWithBand = `${conceptId}__${level}__${band}`;
+    const keyWithBand = generateCacheKey(conceptId, level, age);
     const keyWithoutBand = `${conceptId}__${level}`;
     // Treat old entries as valid for fallback
     return cache[keyWithBand] || cache[keyWithoutBand] || cache[conceptId] || null;
@@ -388,8 +414,7 @@ export function saveCachedStory(story: InteractiveStory, age?: number): void {
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.CACHE_STORIES);
     const cache = raw ? JSON.parse(raw) : {};
-    const band = getAgeBand(age || story.targetAge);
-    const keyWithBand = `${story.conceptId}__${story.level}__${band}`;
+    const keyWithBand = generateCacheKey(story.conceptId, story.level, age || story.targetAge);
     const keyWithoutBand = `${story.conceptId}__${story.level}`;
     cache[keyWithBand] = story;
     cache[keyWithoutBand] = story;
@@ -408,8 +433,7 @@ export function getCachedQuiz(conceptId: string, level: string, age?: number): Q
     const raw = localStorage.getItem(STORAGE_KEYS.CACHE_QUIZZES);
     if (!raw) return null;
     const cache = JSON.parse(raw);
-    const band = getAgeBand(age);
-    const keyWithBand = `${conceptId}__${level}__${band}`;
+    const keyWithBand = generateCacheKey(conceptId, level, age);
     const keyWithoutBand = `${conceptId}__${level}`;
     // Treat old entries as valid for fallback
     return cache[keyWithBand] || cache[keyWithoutBand] || cache[conceptId] || null;
@@ -422,8 +446,7 @@ export function saveCachedQuiz(quiz: QuizData, age?: number): void {
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.CACHE_QUIZZES);
     const cache = raw ? JSON.parse(raw) : {};
-    const band = getAgeBand(age || quiz.targetAge);
-    const keyWithBand = `${quiz.conceptId}__${quiz.level}__${band}`;
+    const keyWithBand = generateCacheKey(quiz.conceptId, quiz.level, age || quiz.targetAge);
     const keyWithoutBand = `${quiz.conceptId}__${quiz.level}`;
     cache[keyWithBand] = quiz;
     cache[keyWithoutBand] = quiz;
@@ -496,10 +519,150 @@ export function getAllSessionReports(): SessionReportItem[] {
   }
 }
 
-// ---------------- PARENT SETTINGS & SAFETY ----------------
+export interface DailyReportSummary {
+  date: string;
+  totalSessions: number;
+  understoodWellCount: number;
+  needsImprovementCount: number;
+  totalTimeSpentMinutes: number;
+  syllabusReportsCount: number;
+  exploredReportsCount: number;
+  recommendedFocus: string;
+}
+
+/**
+ * Pure helper to calculate daily summary metrics from session report items.
+ */
+export function generateDailyReportSummary(date: string, reports: SessionReportItem[]): DailyReportSummary {
+  const dateReports = reports.filter(r => r.date === date);
+  const syllabusReports = dateReports.filter(r => r.isSyllabusTopic);
+  const exploredReports = dateReports.filter(r => !r.isSyllabusTopic);
+  const understoodWell = dateReports.filter(r => r.conceptMasteryScore >= 70);
+  const needsImprovement = dateReports.filter(r => r.conceptMasteryScore < 70);
+  const totalSeconds = dateReports.reduce((acc, r) => acc + (r.timeSpentSeconds || 0), 0);
+
+  let recommendedFocus = 'Great progress! Continue exploring new topics.';
+  if (needsImprovement.length > 0) {
+    const primary = needsImprovement[0];
+    const misconception = primary.misconceptionsDetected?.[0] || 'core principle';
+    recommendedFocus = `Review ${primary.topicTitle}: address detected misconception "${misconception}" with a tangible hands-on example before moving to new chapters.`;
+  } else if (syllabusReports.length > 0) {
+    recommendedFocus = `Great mastery demonstrated across topics! Encourage the student to advance to next higher-level subtopics in ${syllabusReports[0]?.subject || 'Science'}.`;
+  }
+
+  return {
+    date,
+    totalSessions: dateReports.length,
+    understoodWellCount: understoodWell.length,
+    needsImprovementCount: needsImprovement.length,
+    totalTimeSpentMinutes: Math.floor(totalSeconds / 60),
+    syllabusReportsCount: syllabusReports.length,
+    exploredReportsCount: exploredReports.length,
+    recommendedFocus
+  };
+}
+
+// ---------------- PARENT SETTINGS & PIN SECURITY ----------------
+
+/**
+ * Fast synchronous SHA-256 implementation for client-side salted PIN hashing.
+ */
+function computeSha256(ascii: string): string {
+  function rightRotate(value: number, amount: number) {
+    return (value >>> amount) | (value << (32 - amount));
+  }
+  let i: number, j: number;
+  let result = '';
+
+  const words: number[] = [];
+  const asciiBitLength = ascii.length * 8;
+
+  let hash = [
+    0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
+    0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19
+  ];
+
+  const k = [
+    0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+    0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+    0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+    0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+    0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+    0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+    0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+  ];
+
+  for (i = 0; i < ascii.length; i++) {
+    const code = ascii.charCodeAt(i);
+    words[i >> 2] |= code << (24 - (i % 4) * 8);
+  }
+
+  words[asciiBitLength >> 5] |= 0x80 << (24 - (asciiBitLength % 32));
+  words[(((asciiBitLength + 64) >> 9) << 4) + 15] = asciiBitLength;
+
+  for (i = 0; i < words.length; i += 16) {
+    const w = words.slice(i, i + 16);
+    const oldHash = hash.slice(0);
+
+    for (j = 0; j < 64; j++) {
+      if (j >= 16) {
+        const s0 = rightRotate(w[j - 15], 7) ^ rightRotate(w[j - 15], 18) ^ (w[j - 15] >>> 3);
+        const s1 = rightRotate(w[j - 2], 17) ^ rightRotate(w[j - 2], 19) ^ (w[j - 2] >>> 10);
+        w[j] = (w[j - 16] + s0 + w[j - 7] + s1) | 0;
+      }
+
+      const s1 = rightRotate(hash[4], 6) ^ rightRotate(hash[4], 11) ^ rightRotate(hash[4], 25);
+      const ch = (hash[4] & hash[5]) ^ (~hash[4] & hash[6]);
+      const temp1 = (hash[7] + s1 + ch + k[j] + (w[j] | 0)) | 0;
+      const s0 = rightRotate(hash[0], 2) ^ rightRotate(hash[0], 13) ^ rightRotate(hash[0], 22);
+      const maj = (hash[0] & hash[1]) ^ (hash[0] & hash[2]) ^ (hash[1] & hash[2]);
+      const temp2 = (s0 + maj) | 0;
+
+      hash = [(temp1 + temp2) | 0, hash[0], hash[1], hash[2], (hash[3] + temp1) | 0, hash[4], hash[5], hash[6]];
+    }
+
+    for (j = 0; j < 8; j++) {
+      hash[j] = (hash[j] + oldHash[j]) | 0;
+    }
+  }
+
+  for (i = 0; i < 8; i++) {
+    for (j = 3; j >= 0; j--) {
+      const b = (hash[i] >> (j * 8)) & 255;
+      result += (b < 16 ? '0' : '') + b.toString(16);
+    }
+  }
+
+  return result;
+}
+
+const PIN_SALT = 'storylearn_pin_salt_v1';
+
+/**
+ * Creates salted SHA-256 hash of 4-digit Parent Portal PIN.
+ */
+export function hashParentPin(pin: string): string {
+  return computeSha256(`${PIN_SALT}:${pin.trim()}`);
+}
+
+/**
+ * Verifies user entered PIN against stored hashed PIN.
+ * Supports transparent fallback verification for unmigrated plain PINs.
+ */
+export function verifyParentPin(inputPin: string, settings: ParentSettings): boolean {
+  const clean = inputPin.trim();
+  if (settings.pinHash) {
+    return hashParentPin(clean) === settings.pinHash;
+  }
+  if (settings.pin) {
+    return clean === settings.pin.trim();
+  }
+  return false;
+}
 
 const DEFAULT_PARENT_SETTINGS: ParentSettings = {
-  pin: '1234',
+  pinHash: hashParentPin('1234'),
   dailyTimeLimitMinutes: 35,
   syllabusOnly: false,
   reminderTime: '18:00'
@@ -512,7 +675,28 @@ export function getParentSettings(): ParentSettings {
       localStorage.setItem(STORAGE_KEYS.PARENT_SETTINGS, JSON.stringify(DEFAULT_PARENT_SETTINGS));
       return DEFAULT_PARENT_SETTINGS;
     }
-    return { ...DEFAULT_PARENT_SETTINGS, ...JSON.parse(raw) };
+    const parsed = JSON.parse(raw);
+    let migrated = false;
+
+    // Security: migrate legacy plain PIN to salted SHA-256 hash on first read
+    if (parsed.pin && !parsed.pinHash) {
+      parsed.pinHash = hashParentPin(parsed.pin);
+      delete parsed.pin;
+      migrated = true;
+    } else if (!parsed.pinHash) {
+      parsed.pinHash = hashParentPin('1234');
+      migrated = true;
+    }
+
+    if (migrated) {
+      try {
+        localStorage.setItem(STORAGE_KEYS.PARENT_SETTINGS, JSON.stringify(parsed));
+      } catch (err) {
+        console.error('Failed to persist migrated PIN hash:', err);
+      }
+    }
+
+    return { ...DEFAULT_PARENT_SETTINGS, ...parsed };
   } catch {
     return DEFAULT_PARENT_SETTINGS;
   }
@@ -520,7 +704,13 @@ export function getParentSettings(): ParentSettings {
 
 export function saveParentSettings(settings: ParentSettings): void {
   try {
-    localStorage.setItem(STORAGE_KEYS.PARENT_SETTINGS, JSON.stringify(settings));
+    // Ensure plain PIN is never written back to storage
+    const sanitized = { ...settings };
+    if (sanitized.pin && !sanitized.pinHash) {
+      sanitized.pinHash = hashParentPin(sanitized.pin);
+      delete sanitized.pin;
+    }
+    localStorage.setItem(STORAGE_KEYS.PARENT_SETTINGS, JSON.stringify(sanitized));
   } catch (err) {
     console.error('Failed to save parent settings:', err);
   }

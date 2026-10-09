@@ -18,7 +18,7 @@ import {
   X,
   Compass
 } from 'lucide-react';
-import { EducationLevel, TopicValidationResult, getTypicalAgeForClass } from '../../types/learning';
+import { EducationLevel, TopicValidationResult, getTypicalAgeForClass, getClassForTypicalAge } from '../../types/learning';
 import {
   getStudentProfile,
   getParentSettings,
@@ -70,13 +70,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
     const clamped = Math.min(16, Math.max(5, newAge));
     setSelectedAge(clamped);
     updateStudentAge(clamped);
-
-    // Sync typical class if age aligns
-    if (clamped <= 11) setSelectedLevel('Class 6');
-    else if (clamped === 12) setSelectedLevel('Class 7');
-    else if (clamped === 13) setSelectedLevel('Class 8');
-    else if (clamped === 14) setSelectedLevel('Class 9');
-    else setSelectedLevel('Class 10');
+    setSelectedLevel(getClassForTypicalAge(clamped));
   };
 
   const handleClassChange = (cls: string) => {
@@ -226,7 +220,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     <button
                       type="button"
                       onClick={() => setIsPersonalizeOpen(false)}
-                      className="p-1 rounded text-slate-400 hover:text-white cursor-pointer"
+                      aria-label="Close personalize settings"
+                      className="p-1 rounded text-slate-400 hover:text-white cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none"
                     >
                       <X className="w-3.5 h-3.5" />
                     </button>
@@ -245,13 +240,15 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                         max={16}
                         step={1}
                         value={selectedAge}
+                        aria-label="Age slider"
                         onChange={(e) => handleAgeChange(parseInt(e.target.value, 10))}
-                        className="w-full accent-amber-400 cursor-pointer h-1.5 bg-slate-800 rounded-lg"
+                        className="w-full accent-amber-400 cursor-pointer h-1.5 bg-slate-800 rounded-lg focus-visible:ring-2 focus-visible:ring-amber-400"
                       />
                       <select
                         value={selectedAge}
+                        aria-label="Age selector"
                         onChange={(e) => handleAgeChange(parseInt(e.target.value, 10))}
-                        className="bg-slate-900 border border-slate-700 text-slate-200 text-xs font-mono rounded-lg px-2 py-0.5 cursor-pointer"
+                        className="bg-slate-900 border border-slate-700 text-slate-200 text-xs font-mono rounded-lg px-2 py-0.5 cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400"
                       >
                         {Array.from({ length: 12 }, (_, i) => i + 5).map(ageNum => (
                           <option key={ageNum} value={ageNum}>
@@ -273,8 +270,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                           <button
                             key={cNum}
                             type="button"
+                            aria-label={`Select Class ${cNum}`}
                             onClick={() => handleClassChange(val)}
-                            className={`py-1 text-xs font-mono rounded-lg border transition-all cursor-pointer ${
+                            className={`py-1 text-xs font-mono rounded-lg border transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none ${
                               isSelected
                                 ? 'bg-amber-400 text-slate-950 font-bold border-amber-400'
                                 : 'bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-700'

@@ -82,6 +82,18 @@ export function getTypicalAgeForClass(classNum?: number | string): number {
   }
 }
 
+/**
+ * Maps typical age back to corresponding school Class.
+ * Class 6=11, 7=12, 8=13, 9=14, 10=15.
+ */
+export function getClassForTypicalAge(age?: number): EducationLevel {
+  if (!age || age <= 11) return 'Class 6';
+  if (age === 12) return 'Class 7';
+  if (age === 13) return 'Class 8';
+  if (age === 14) return 'Class 9';
+  return 'Class 10';
+}
+
 // --- TOPIC VALIDATION ---
 export interface TopicValidationResult {
   isValidLearningTopic: boolean;
@@ -308,7 +320,8 @@ export interface SessionReportItem {
 }
 
 export interface ParentSettings {
-  pin: string; // default "1234"
+  pin?: string; // Legacy plain PIN (migrated to pinHash on first use)
+  pinHash: string; // Salted SHA-256 hash of 4-digit PIN
   dailyTimeLimitMinutes: number; // e.g. 30
   syllabusOnly: boolean; // disables Door 1 when true
   reminderTime: string; // e.g. "17:30"
